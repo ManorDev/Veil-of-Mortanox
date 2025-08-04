@@ -60,15 +60,18 @@ class Mortanox(pygame.sprite.Sprite):
         self.last_attack_hit_time = 0
         
         # Inventory system (4 slots)
-        self.inventory = [None] * 4
+        self.inventory = ["sword"]+[0]*3
     
     def fill_inv(self, item):
         for i in range(4):
-            if self.inventory[i] is None:
+            if self.inventory[i]:
                 self.inventory[i] = item
                 return True
         return False  # Inventory full
-    
+    def repalce(self,place,element):
+        self.inventory[place]=element
+    def delete(self,place):
+        self.inventory[place]=0
     def get_current_speed(self):
         return self.base_speed + self.speed_bonus
     

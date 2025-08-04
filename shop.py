@@ -19,7 +19,6 @@ def shop():
     pygame.display.set_caption("Shop")
     clock = pygame.time.Clock()
 
-    # Colors
     BACKGROUND_COLOR = (26, 26, 46)
     BUTTON_NORMAL_COLOR = (50, 50, 70)
     BUTTON_HOVER_COLOR = (80, 80, 100)
@@ -29,22 +28,18 @@ def shop():
     SUCCESS_COLOR = (0, 255, 0)
     ERROR_COLOR = (255, 100, 100)
 
-    # Fonts
     lucarius_font = pygame.font.SysFont("Courier", 35)
     title_font = pygame.font.SysFont("Courier", 60, bold=True)
     jar_font = pygame.font.SysFont("Courier", 20, bold=True)
     message_font = pygame.font.SysFont("Courier", 24, bold=True)
 
-    # Load images
     try:
         lucarius_image = pygame.image.load("Assets/World/Images/Lucarius.png").convert_alpha()
         lucarius_image = pygame.transform.scale(lucarius_image, (40, 40))
     except pygame.error:
-        # Fallback if image can't be loaded
         lucarius_image = pygame.Surface((40, 40))
         lucarius_image.fill((255, 215, 0))
 
-    # Button layout
     button_width, button_height = 150, 150
     spacing = 50
     start_x, start_y = 50, 150
@@ -64,25 +59,21 @@ def shop():
     
     button_texts = ["Power Jar", "Health Jar", "Speed Jar", "Jump Boost", 
                    "Second Chance", "Max Health", "Attack Speed"]
-    
-    # Create jar items with proper effects
     jars_list = [
-        Jar(1, "damage", 30),           # +1 damage for 30 lucarii
-        Jar(1, "health", 50),           # +1 health for 50 lucarii  
-        Jar(2, "speed", 30),            # +2 speed for 30 lucarii
-        Jar(5, "jump_height", 20),      # +5 jump height for 20 lucarii
-        Jar(1, "second_chance", 200),   # Second chance for 200 lucarii
-        Jar(1, "max_health", 150),      # +1 max health for 150 lucarii
-        Jar(50, "attack_speed", 80)     # -50ms attack cooldown for 80 lucarii
+        Jar(1, "damage", 30),           
+        Jar(1, "health", 50),             
+        Jar(2, "speed", 30),            
+        Jar(5, "jump_height", 20),      
+        Jar(1, "second_chance", 200),   
+        Jar(1, "max_health", 150),      
+        Jar(50, "attack_speed", 80)    
     ]
     
-    # Get current lucarii count
     shop_lucarii_count = assets.lucarii_collected
     
-    # Create player instance for upgrades
     mortanox = create_mortanox()
     
-    # Message system
+
     message_text = ""
     message_color = TEXT_COLOR
     message_timer = 0
