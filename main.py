@@ -243,16 +243,18 @@ def main_game_loop():
                 mortanox.last_attack_hit_time = pygame.time.get_ticks()
                 attack_rect = mortanox.get_attack_rect()
                 if attack_rect:
-                    hit_bats = [bat for bat in hostile_bats_group if attack_rect.colliderect(bat.rect)]
+                    hit_bats = [bat for bat in hostile_bats_group if attack_rect.colliderect(bat.hitbox)]
                     for bat in hit_bats:
                         attack_hit_sound.play()
-                        bat.vitalis -= mortanox.damage
-
+                        knockback_direction = 1 if mortanox.rect.centerx < bat.rect.centerx else -1
+                        bat.get_hit(knockback_direction)
+    
                         if bat.vitalis <= 0:
                             bat.kill()
                             bat_kill_count += 1
                             lucarii_collected += random.randint(5, 15)
                             item_collected_sound.play()
+
                                 
 
             
@@ -261,7 +263,7 @@ def main_game_loop():
                 item_collected_sound.play()
                 lucarii_collected += 1
             
-            collided_bats = pygame.sprite.spritecollide(mortanox, hostile_bats_group, False, pygame.sprite.collide_rect)
+            collided_bats = [bat for bat in hostile_bats_group if mortanox.rect.colliderect(bat.hitbox)]
             if collided_bats:
                 if not mortanox.vitalis_animating:
                     mortanox.vitalis -= 1
@@ -283,7 +285,8 @@ def main_game_loop():
             bar_height = 10
             bar_x = bat.rect.centerx - bar_width // 2
             bar_y = bat.rect.top - 20
-            fill = (bat.vitalis / 3) * bar_width
+            max_health = 3 + level // 2
+            fill = (bat.vitalis / max_health) * bar_width
             pygame.draw.rect(screen, (255, 0, 0), (bar_x, bar_y, bar_width, bar_height))
             pygame.draw.rect(screen, (0, 255, 0), (bar_x, bar_y, fill, bar_height))
             pygame.draw.rect(screen, (255, 255, 255), (bar_x, bar_y, bar_width, bar_height), 2)

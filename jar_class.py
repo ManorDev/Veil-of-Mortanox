@@ -6,11 +6,11 @@ class Jar:
         self.defect_attribute = defect_attribute
         self.price = price
         self.duration=duration
-    def apply_positive(self, player):
+    def apply_positive(self, player,offset=1):
         """Apply positive effects to the player"""
         if self.attribute.lower() == "speed":
             # Increase movement speed
-            player.dx += self.bonus
+            player.dx += offset*(self.bonus)
         elif self.attribute.lower() == "health":
             # Heal the player (but don't exceed max health)
             player.vitalis += min(player.vitalis + self.bonus, player.max_vitalis)
