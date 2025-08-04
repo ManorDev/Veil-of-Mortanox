@@ -30,6 +30,7 @@ header p {
 
 .screenshot {
   text-align: center;
+  margin: 40px 0;
 }
 
 .screenshot img {
@@ -49,4 +50,8 @@ footer {
 a {
   color: #6cf;
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
