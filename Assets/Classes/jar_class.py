@@ -6,6 +6,7 @@ class Jar:
         self.defect_attribute = defect_attribute
         self.price = price
         self.duration=duration
+        self.attack_cool_down
     def apply_positive(self, player,offset=1):
         """Apply positive effects to the player"""
         if self.attribute.lower() == "speed":
@@ -20,7 +21,7 @@ class Jar:
             player.vitalis += self.bonus
         elif self.attribute.lower() == "jump_height":
             # Increase jump height
-            player.jump_height += self.bonus
+            player.jump_height += offset(self.bonus)
         elif self.attribute.lower() == "attack_speed":
             # Decrease attack cooldown (faster attacks)
             player.attack_cooldown = max(100, player.attack_cooldown - (self.bonus * 10))
@@ -29,7 +30,7 @@ class Jar:
             player.second_chance = True
         elif self.attribute.lower() == "damage":
             # Increase damage
-            player.damage += self.bonus
+            player.damage += offset(self.bonus)
     
     def apply_negative(self, player):
         """Apply negative effects to the player"""
@@ -69,4 +70,4 @@ class Jar:
             print(f"Not enough Lucarii! Need {self.price}, have {assets.lucarii_collected}")
             return False
     def remove(self,player):
-        pass
+        self.apply_positive(player,-1)

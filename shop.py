@@ -3,11 +3,11 @@ import subprocess
 import sys
 import os
 import json
-from button_class import Button
+from Assets.Classes.button_class import Button
 import assets
 from assets import lucarii_collected, lucarii_path, save_lucarii
-from jar_class import Jar
-from player_class import create_mortanox
+from Assets.Classes.jar_class import Jar
+from Assets.Classes.player_class import create_mortanox
 
 pygame.init()
 pygame.mixer.init()
@@ -34,7 +34,7 @@ def shop():
     message_font = pygame.font.SysFont("Courier", 24, bold=True)
 
     try:
-        lucarius_image = pygame.image.load("Assets/World/Images/Lucarius.png").convert_alpha()
+        lucarius_image = pygame.image.load("Assets/World/UI/Images/Lucarius.png").convert_alpha()
         lucarius_image = pygame.transform.scale(lucarius_image, (40, 40))
     except pygame.error:
         lucarius_image = pygame.Surface((40, 40))

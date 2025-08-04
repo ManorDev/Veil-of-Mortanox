@@ -4,7 +4,7 @@ import os
 import subprocess
 import json
 from assets import lucarii_collected, lucarii_path, save_lucarii
-from button_class import Button
+from Assets.Classes.button_class import Button
 
 pygame.init()
 pygame.mixer.init()

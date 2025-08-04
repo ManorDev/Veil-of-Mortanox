@@ -5,11 +5,11 @@ import pygame
 import subprocess
 import sys
 
-from lucarius_class import Lucarius
-from hostile_bat_class import HostileBat
-from class_friendly_bat import FriendlyBat
-from player_class import Mortanox
-from button_class import Button
+from Assets.Classes.lucarius_class import Lucarius 
+from Assets.Classes.hostile_bat_class import HostileBat
+from Assets.Classes.class_friendly_bat import FriendlyBat
+from Assets.Classes.player_class import Mortanox
+from Assets.Classes.button_class import Button
 from assets import lucarii_path, lucarii_collected, save_lucarii, save_level, level_path, level, load_level, bat_kill_count
 
 pygame.init()
