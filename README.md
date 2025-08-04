@@ -29,7 +29,7 @@
 
 ##  Screenshot
 
-[![Gameplay Screenshot](https://raw.githubusercontent.com/yourusername/yourrepo/main/screenshot.png)](https://raw.githubusercontent.com/ManorDev/Veil-of-Mortanox/master/screenshot.png)
+[![Gameplay Screenshot]([https://raw.githubusercontent.com/yourusername/yourrepo/main/screenshot.png](https://raw.githubusercontent.com/ManorDev/Veil-of-Mortanox/master/screenshot.png))](https://raw.githubusercontent.com/ManorDev/Veil-of-Mortanox/master/screenshot.png)
 
 > This is a placeholder screenshot. The background and ground art, as well as the sound design, are temporary assets from the internet and will be replaced with original content.
 
