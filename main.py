@@ -184,7 +184,7 @@ def create_mortanox():
     global mortanox
     mortanox = Mortanox()
 def main_game_loop():
-    global lucarii_collected, game_over
+    global lucarii_collected, game_over, bat_kill_count
     create_mortanox()
     all_sprites.empty()
     lucarii_group.empty()

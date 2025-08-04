@@ -53,7 +53,7 @@ class Mortanox(pygame.sprite.Sprite):
         self.last_attack_time = 0
         self.current_frame = 0
         self.last_update = pygame.time.get_ticks()
-        self.animation_speed = 9
+        self.animation_speed = 13
         self.frame_duration = 1000 // self.animation_speed
         
         self.image = self.idle_image
