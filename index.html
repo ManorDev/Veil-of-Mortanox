@@ -2,124 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Veil of Mortanox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #121212;
-      color: #e0e0e0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      font-family: 'Cinzel', serif;
+      background-color: #111;
+      color: #eee;
+    }
+    header {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/7/70/Pixel-art_background_example.png') no-repeat center center;
+      background-size: cover;
+      padding: 100px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0;
+    }
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.85;
+    }
+    .container {
+      padding: 40px 20px;
       max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-      line-height: 1.6;
+      margin: auto;
     }
-    h1, h2 {
-      color: #d14836;
-      margin-bottom: 0.3em;
-      font-weight: 700;
+    .screenshot {
+      text-align: center;
     }
-    h1 {
-      font-size: 2.8rem;
-      border-bottom: 2px solid #d14836;
-      padding-bottom: 0.3em;
-      margin-bottom: 1em;
-    }
-    a {
-      color: #a55c4f;
-      text-decoration: none;
-      border-bottom: 1px solid #a55c4f;
-    }
-    a:hover {
-      color: #d14836;
-      border-bottom-color: #d14836;
-    }
-    pre {
-      background-color: #1e1e1e;
-      padding: 15px;
-      border-radius: 6px;
-      overflow-x: auto;
-      font-size: 0.9rem;
-      color: #cfcfcf;
-    }
-    ul {
-      list-style-type: disc;
-      margin-left: 1.3em;
-    }
-    .section {
-      margin-bottom: 2.5em;
+    .screenshot img {
+      width: 100%;
+      max-width: 700px;
+      border: 2px solid #555;
+      border-radius: 8px;
     }
     footer {
       text-align: center;
-      font-size: 0.85rem;
-      color: #666;
-      border-top: 1px solid #333;
-      padding-top: 1em;
-      margin-top: 3em;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #999;
+    }
+    a {
+      color: #6cf;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Veil of Mortanox</h1>
-    <p>A 2D dark fantasy platformer built with Python and Pygame. Play as Mortanox — a cursed warrior fighting to reclaim his soul.</p>
+    <p>A cursed 2D pixel-fantasy platformer forged with Pygame</p>
   </header>
 
-  <main>
-    <section class="section" id="about">
-      <h2>About the Game</h2>
-      <p><strong>Veil of Mortanox</strong> combines atmospheric storytelling with precise 2D platforming action. Players navigate hostile environments, face relentless enemies, and engage in sword combat while collecting Lucarii coins to survive.</p>
-    </section>
+  <div class="container">
+    <h2>About the Game</h2>
+    <p>
+      <strong>Veil of Mortanox</strong> is a dark-fantasy 2D pixel platformer centered around Mortanox — a cursed, heroic figure in a mythic land. 
+      Collect <strong>Lucarii</strong> (coins), protect your <strong>Vitalis</strong> (health), defeat hostile bats and mini-bosses, and uncover the mystery behind the curse.
+    </p>
+    <p>
+      The game currently features basic enemy logic, sprite-based animation, combat mechanics, and collectible Lucarii. 
+      A full upgrade shop, healing system, boss battles, and more are under development.
+    </p>
 
-    <section class="section" id="features">
-      <h2>Key Features</h2>
-      <ul>
-        <li>Intuitive sword-based combat system with smooth animations</li>
-        <li>Progressive enemy encounters: hostile bats and challenging mini-bosses</li>
-        <li>Vitalis health system with dynamic damage and healing mechanics</li>
-        <li>Lucarii coins collection used for healing and future upgrades</li>
-        <li>Level advancement tied to player performance (mini-boss every 5 bat kills)</li>
-        <li>Persistent save and load system using JSON files</li>
-        <li>Custom sound design and music composed with FL Studio</li>
-      </ul>
-    </section>
+    <h3>Current Gameplay Elements</h3>
+    <ul>
+      <li>Mortanox character with attack, jump, and run animations</li>
+      <li>Hostile bats with visible health bars</li>
+      <li>Mini-boss spawn system (every 5 bat kills)</li>
+      <li>Lucarii and Vitalis UI, coin collection logic</li>
+      <li>Level-up and save system (JSON-based)</li>
+    </ul>
 
-    <section class="section" id="download">
-      <h2>Download & Play</h2>
-      <p>The latest builds and releases are available on the <a href="https://github.com/ManorDev/Veil-of-Mortanox/releases">GitHub Releases page</a>.</p>
-      <p>Alternatively, clone the repository and run the game locally:</p>
-      <pre><code>git clone https://github.com/ManorDev/Veil-of-Mortanox.git
-cd veil-of-mortanox
-python main.py
-</code></pre>
-    </section>
+    <div class="screenshot">
+      <h3>Screenshot</h3>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Pixel-art_background_example.png" alt="Gameplay screenshot placeholder">
+      <p><em>This screenshot is a placeholder. The background, ground, and sound were sourced from the internet as temporary assets. These will be replaced with original designs in future updates.</em></p>
+    </div>
 
-    <section class="section" id="lore">
-      <h2>Name Meanings & Lore</h2>
-      <ul>
-        <li><strong>Mortanox</strong>: Derived from Latin words "Mors" (death) and "Nox" (night), symbolizing a cursed warrior shrouded in darkness.</li>
-        <li><strong>Lucarii</strong>: Inspired by the Latin "Lucrum" meaning wealth or profit, representing the currency Mortanox collects.</li>
-        <li><strong>Vitalis</strong>: Latin for "life force", representing the player's health and essence in the game.</li>
-        <li><strong>Veil of Mortanox</strong>: Represents the curse and mystery surrounding the protagonist's journey.</li>
-      </ul>
-    </section>
+    <h2>Credits</h2>
+    <ul>
+      <li><strong>Game Design:</strong> Manor Rahamim & Ilay Glickman</li>
+      <li><strong>Audio:</strong> FL Studio</li>
+      <li><strong>Art:</strong> Piskel, Photoshop</li>
+      <li><strong>Engine:</strong> Pygame</li>
+    </ul>
 
-    <section class="section" id="credits">
-      <h2>Credits</h2>
-      <p>Game design and programming by Manor Rahamim and Ilay Glickman.</p>
-      <p>Art created with Piskel and Photoshop.</p>
-      <p>Audio composed and produced in FL Studio.</p>
-      <p>Engine powered by Pygame.</p>
-    </section>
+    <h2>Repository</h2>
+    <p>
+      View or contribute on GitHub:
+      <a href="https://github.com/YOUR_USERNAME/YOUR_REPO" target="_blank">Veil of Mortanox on GitHub</a>
+    </p>
 
-    <section class="section" id="source">
-      <h2>Open Source</h2>
-      <p>Source code and development updates available on <a href="https://github.com/your-username/your-repo-name">GitHub</a>.</p>
-    </section>
-  </main>
+    <h2>Status</h2>
+    <p>
+      This project is under active development. Expect frequent updates, improvements, and new content. Backgrounds, ground art, and sound design are currently placeholders and will be replaced with original assets.
+    </p>
+  </div>
 
   <footer>
-    &copy; 2025 Manor Rahamim & Ilay Glickman. All rights reserved.
+    &copy; 2025 Manor Rahamim & Ilay Glickman — All Rights Reserved
   </footer>
 </body>
 </html>
