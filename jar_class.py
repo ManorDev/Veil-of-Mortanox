@@ -1,15 +1,11 @@
-import pygame
-import json
-import os
-
 class Jar:
-    def __init__(self, effect: int, attribute: str, price: int, defect_attribute="", defect=0):
+    def __init__(self, effect: int, attribute: str, price: int, defect_attribute="", defect=0,duration=-1):
         self.bonus = effect
         self.attribute = attribute
         self.defect = defect
         self.defect_attribute = defect_attribute
         self.price = price
-    
+        self.duration=duration
     def apply_positive(self, player):
         """Apply positive effects to the player"""
         if self.attribute.lower() == "speed":
@@ -17,7 +13,7 @@ class Jar:
             player.dx += self.bonus
         elif self.attribute.lower() == "health":
             # Heal the player (but don't exceed max health)
-            player.vitalis = min(player.vitalis + self.bonus, player.max_vitalis)
+            player.vitalis += min(player.vitalis + self.bonus, player.max_vitalis)
         elif self.attribute.lower() == "max_health":
             # Increase maximum health and current health
             player.max_vitalis += self.bonus
@@ -64,9 +60,13 @@ class Jar:
         
         if assets.lucarii_collected >= self.price:
             assets.lucarii_collected -= self.price
+            if self.duration==-1:
+                self.price*=1.5
             self.apply(player)
             save_lucarii()
             return True
         else:
             print(f"Not enough Lucarii! Need {self.price}, have {assets.lucarii_collected}")
             return False
+    def remove(self,player):
+        pass

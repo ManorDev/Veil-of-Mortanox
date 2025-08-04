@@ -1,6 +1,4 @@
 import pygame
-import sys
-import os
 
 pygame.init()
 pygame.mixer.init()
@@ -31,8 +29,16 @@ class Mortanox(pygame.sprite.Sprite):
             self.attack_sound = None
         
         self.damage = 1
+        
+
+        self.vitalis_removed_image = [pygame.transform.scale(pygame.image.load(f"Assets/World/UI/VitalisRemovingAnimation/vitalis{i}.png"), (70, 70)) for i in range(8)]
         self.vitalis = max_vitalis
         self.max_vitalis = max_vitalis
+        self.vitalis_animating = False
+        self.vitalis_anim_frame = 0
+        self.vitalis_anim_start_time = 0
+        self.vitalis_anim_speed = 50
+
         self.jump_height = 20
         self.base_speed = 5
         self.speed_bonus = 0  
@@ -59,12 +65,11 @@ class Mortanox(pygame.sprite.Sprite):
         self.on_ground = True
         self.last_attack_hit_time = 0
         
-        # Inventory system (4 slots)
-        self.inventory = ["sword"]+[0]*3
+        self.inventory = ["Gladius Umbrae",0,0,0]
     
     def fill_inv(self, item):
         for i in range(4):
-            if self.inventory[i]:
+            if self.inventory[i]!=0:
                 self.inventory[i] = item
                 return True
         return False  # Inventory full
@@ -77,7 +82,16 @@ class Mortanox(pygame.sprite.Sprite):
     
     def update(self):
         self.animate()
-        
+
+        if self.vitalis_animating:
+            now = pygame.time.get_ticks()
+            if now - self.vitalis_anim_start_time > self.vitalis_anim_speed:
+                self.vitalis_anim_start_time = now
+                self.vitalis_anim_frame += 1
+                if self.vitalis_anim_frame >= len(self.vitalis_removed_image):
+                    self.vitalis_animating = False
+                    self.vitalis_anim_frame = 0
+
         if not self.is_attacking:
             self.rect.x += self.dx
         
@@ -153,7 +167,12 @@ class Mortanox(pygame.sprite.Sprite):
         return None
     
     def take_damage(self, damage=1):
-        self.vitalis -= damage
+        if self.vitalis > 0:
+            self.vitalis -= damage
+            self.vitalis_animating = True
+            self.vitalis_anim_frame = 0
+            self.vitalis_anim_start_time = pygame.time.get_ticks()
+
         
         if self.vitalis <= 0 and self.second_chance and not self.has_used_second_chance:
             self.vitalis = 1
@@ -184,6 +203,5 @@ class Mortanox(pygame.sprite.Sprite):
     def decrease_attack_cooldown(self, amount):
         self.attack_cooldown = max(100, self.attack_cooldown - amount)
 
-# Factory function to create Mortanox instance
 def create_mortanox():
     return Mortanox()

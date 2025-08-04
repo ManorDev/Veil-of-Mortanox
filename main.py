@@ -1,17 +1,16 @@
 import os
-import math
 import json
 import random
 import pygame
 import subprocess
 import sys
-import assets
-import button_class
-import player_class
+
+from lucarius_class import Lucarius
+from hostile_bat_class import HostileBat
+from class_friendly_bat import FriendlyBat
 from player_class import Mortanox
 from button_class import Button
 from assets import lucarii_path, lucarii_collected, save_lucarii, save_level, level_path, level, load_level, bat_kill_count
-
 
 pygame.init()
 pygame.mixer.init()
@@ -24,7 +23,7 @@ clock = pygame.time.Clock()
 
 try:
     mortanox_idle_image = pygame.image.load("Assets/Player/MortanoxIdle.png")
-    mortanox_running_images = [pygame.image.load(f"Assets/Player/Running/running{i}.png") for i in range(8)]
+    mortanox_running_images = [pygame.image.load(f"Assets/Player/Running/running{i}.png") for i in range(8)], (70, 70)
     mortanox_attacking_images = [pygame.image.load(f"Assets/Player/Attack/Attack{i}.png") for i in range(8)]
     mortanox_jumping_images = [pygame.image.load(f"Assets/Player/Jump/jump{i}.png") for i in range(12)]
 
@@ -32,24 +31,24 @@ try:
     hostile_bat_attacking_images = [pygame.image.load(f"Assets/Enemies/HostileBat/Attack/hostilebat{i}.png") for i in range(8)]
     mini_boss_moving_images = [pygame.image.load(f"Assets/Enemies/MiniBoss/Moving/minibossmoving{i}.png") for i in range(4)]
 
-    bg_image = pygame.image.load("Assets/World/Images/BG.png").convert()
-    vitalis_image = pygame.image.load("Assets/World/Images/Vitalis.png")
-    lucarius_image = pygame.image.load("Assets/World/Images/Lucarius.png") 
-    vitalis_removed_image = pygame.image.load("Assets/World/VitalisRemovingAnimation/vitalis7.png")
+    bg_image = pygame.image.load("Assets/World/UI/Images/BG.png").convert()
+    vitalis_image = pygame.image.load("Assets/World/UI/Images/Vitalis.png")
+    lucarius_image = pygame.image.load("Assets/World/UI/Images/Lucarius.png") 
+    vitalis_removed_image = [pygame.image.load(f"Assets/World/UI/VitalisRemovingAnimation/vitalis{i}.png") for i in range(8)]
         
         
-    vitalis_removed_image = pygame.transform.scale(vitalis_removed_image, (70, 70))
+    vitalis_removed_image = [pygame.transform.scale(pygame.image.load(f"Assets/World/UI/VitalisRemovingAnimation/vitalis{i}.png"), (70, 70)) for i in range(8)]
     vitalis_image = pygame.transform.scale(vitalis_image, (70, 70))
     lucarius_image = pygame.transform.scale(lucarius_image, (70, 70))
         
     overlay = pygame.Surface((SCREEN_SIZE_X, SCREEN_SIZE_Y), pygame.SRCALPHA)
     overlay.fill((0, 0, 0, 180))
         
-    pygame.mixer.music.load("Assets/World/Sounds/BGMusic.wav")
-    lost_sound = pygame.mixer.Sound("Assets/World/Sounds/Lost.wav")
-    attack_sound = pygame.mixer.Sound("Assets/World/Sounds/Attack.wav")
-    attack_hit_sound = pygame.mixer.Sound("Assets/World/Sounds/AttackHit.wav")
-    item_collected_sound = pygame.mixer.Sound("Assets/World/Sounds/Collected.wav")
+    pygame.mixer.music.load("Assets/World/UI/Sounds/BGMusic.wav")
+    lost_sound = pygame.mixer.Sound("Assets/World/UI/Sounds/Lost.wav")
+    attack_sound = pygame.mixer.Sound("Assets/World/UI/Sounds/Attack.wav")
+    attack_hit_sound = pygame.mixer.Sound("Assets/World/UI/Sounds/AttackHit.wav")
+    item_collected_sound = pygame.mixer.Sound("Assets/World/UI/Sounds/Collected.wav")
         
     pygame.mixer.music.set_volume(0.5)
     lost_sound.set_volume(0.5)
@@ -85,9 +84,6 @@ if os.path.exists(lucarii_path):
     except (json.JSONDecodeError, IOError, KeyError):
         lucarii_collected = 0
 
-
-
-
 if os.path.exists(level_path):
     try:
         with open(level_path, "r") as f:
@@ -99,64 +95,6 @@ if os.path.exists(level_path):
     except (json.JSONDecodeError, IOError, KeyError):
         level = 1
 
-class Lucarius(pygame.sprite.Sprite):
-    def __init__(self):
-        super().__init__()
-        self.image = lucarius_image
-        self.rect = self.image.get_rect(midbottom=(SCREEN_SIZE_X + 50, random.randint(600, 720)))
-    
-    def update(self):
-        self.rect.x -= 3
-        if self.rect.right < 0:
-            self.kill()
-
-class HostileBat(pygame.sprite.Sprite):
-    def __init__(self):
-
-        super().__init__()
-        self.images = [pygame.transform.scale(img, (300, 300)) for img in hostile_bat_attacking_images]
-        self.image = self.images[0]
-        y_positions = [820, 600, 450] 
-        self.rect = self.image.get_rect(midbottom=(SCREEN_SIZE_X + 50, random.choice(y_positions)))
-        self.current_frame = 0
-        self.last_update = pygame.time.get_ticks()
-        self.frame_duration = 1000 // 5
-        self.vitalis = 3 + level // 2
-
-
-    def update(self):
-        now = pygame.time.get_ticks()
-        self.rect.x -= 5
-        if now - self.last_update > self.frame_duration:
-            self.last_update = now
-            self.current_frame = (self.current_frame + 1) % len(self.images)
-            self.image = self.images[self.current_frame]
-        
-        
-        if self.rect.right < 0:
-            self.kill()
-
-class FriendlyBat(pygame.sprite.Sprite):
-    def __init__(self):
-        super().__init__()
-        bat_images = [pygame.image.load(f"Assets/World/Bat/bat{i}.png") for i in range(4)]
-        self.images = [pygame.transform.scale(img, (80, 60)) for img in bat_images]
-        self.image = self.images[0]
-        self.rect = self.image.get_rect(midbottom=(SCREEN_SIZE_X + 50, 640))
-        self.current_frame = 0
-        self.last_update = pygame.time.get_ticks()
-        self.frame_duration = 1000 // 8
-
-    def update(self):
-        now = pygame.time.get_ticks()
-        if now - self.last_update > self.frame_duration:
-            self.last_update = now
-            self.current_frame = (self.current_frame + 1) % len(self.images)
-            self.image = self.images[self.current_frame]
-        
-        self.rect.x -= 2
-        if self.rect.right < 0:
-            self.kill()
 all_sprites = pygame.sprite.Group()
 lucarii_group = pygame.sprite.Group()
 hostile_bats_group = pygame.sprite.Group()
@@ -241,6 +179,7 @@ def game_over_screen():
         
         pygame.display.update()
         clock.tick(60)
+
 def create_mortanox():
     global mortanox
     mortanox = Mortanox()
@@ -308,8 +247,7 @@ def main_game_loop():
                     for bat in hit_bats:
                         attack_hit_sound.play()
                         bat.vitalis -= mortanox.damage
-                        print(f"Bat hit! Remaining HP: {bat.vitalis}")
-                        
+
                         if bat.vitalis <= 0:
                             bat.kill()
                             bat_kill_count += 1
@@ -323,16 +261,22 @@ def main_game_loop():
                 item_collected_sound.play()
                 lucarii_collected += 1
             
-            collided_bats = pygame.sprite.spritecollide(mortanox, hostile_bats_group, True, pygame.sprite.collide_rect)
+            collided_bats = pygame.sprite.spritecollide(mortanox, hostile_bats_group, False, pygame.sprite.collide_rect)
             if collided_bats:
-                mortanox.vitalis -= 1
+                if not mortanox.vitalis_animating:
+                    mortanox.vitalis -= 1
+                    mortanox.vitalis_animating = True
+                    mortanox.vitalis_anim_frame = 0
+                    mortanox.vitalis_anim_start_time = pygame.time.get_ticks()
                 if mortanox.vitalis <= 0:
                     game_over = True
                     run = False
         
+        
         screen.blit(bg_image, (bg1_x, bg1_y))
         screen.blit(bg_image, (bg2_x, bg1_y))
         
+
         all_sprites.draw(screen)
         for bat in hostile_bats_group:
             bar_width = 60
@@ -343,17 +287,21 @@ def main_game_loop():
             pygame.draw.rect(screen, (255, 0, 0), (bar_x, bar_y, bar_width, bar_height))
             pygame.draw.rect(screen, (0, 255, 0), (bar_x, bar_y, fill, bar_height))
             pygame.draw.rect(screen, (255, 255, 255), (bar_x, bar_y, bar_width, bar_height), 2)
-
         
         screen.blit(lucarius_image, (10, 10))
         coin_text = font.render(str(lucarii_collected), True, (255, 255, 255))
         screen.blit(coin_text, (80, 23))
 
-        for i in range(5):
-            if i < mortanox.vitalis:
-                screen.blit(vitalis_image, (10 + i * 45, 70))
-            else:
-                screen.blit(vitalis_removed_image, (10 + i * 45, 70))
+
+        for i in range(mortanox.vitalis):
+            screen.blit(vitalis_image, (10 + i * 45, 70))
+
+
+        if mortanox.vitalis_animating and mortanox.vitalis_anim_frame < len(mortanox.vitalis_removed_image):
+            frame = mortanox.vitalis_removed_image[mortanox.vitalis_anim_frame]
+            screen.blit(frame, (10 + mortanox.vitalis * 45, 70))
+
+
         
         pygame.display.update()
         clock.tick(60)

@@ -1,8 +1,6 @@
 import pygame
 import json
 import os
-import sys
-import subprocess
 
 pygame.init()
 pygame.mixer.init()
@@ -30,10 +28,10 @@ try:
     hostile_bat_attacking_images = [pygame.image.load(f"Assets/Enemies/HostileBat/Attack/hostilebat{i}.png") for i in range(8)]
     mini_boss_moving_images = [pygame.image.load(f"Assets/Enemies/MiniBoss/Moving/minibossmoving{i}.png") for i in range(4)]
 
-    bg_image = pygame.image.load("Assets/World/Images/BG.png").convert()
-    vitalis_image = pygame.image.load("Assets/World/Images/Vitalis.png")
-    lucarius_image = pygame.image.load("Assets/World/Images/Lucarius.png") 
-    vitalis_removed_image = pygame.image.load("Assets/World/VitalisRemovingAnimation/vitalis7.png")
+    bg_image = pygame.image.load("Assets/World/UI/Images/BG.png").convert()
+    vitalis_image = pygame.image.load("Assets/World/UI/Images/Vitalis.png")
+    lucarius_image = pygame.image.load("Assets/World/UI/Images/Lucarius.png") 
+    vitalis_removed_image = pygame.image.load("Assets/World/UI/VitalisRemovingAnimation/vitalis7.png")
         
         
     vitalis_removed_image = pygame.transform.scale(vitalis_removed_image, (70, 70))
@@ -43,11 +41,11 @@ try:
     overlay = pygame.Surface((SCREEN_SIZE_X, SCREEN_SIZE_Y), pygame.SRCALPHA)
     overlay.fill((0, 0, 0, 180))
         
-    pygame.mixer.music.load("Assets/World/Sounds/BGMusic.wav")
-    lost_sound = pygame.mixer.Sound("Assets/World/Sounds/Lost.wav")
-    attack_sound = pygame.mixer.Sound("Assets/World/Sounds/Attack.wav")
-    attack_hit_sound = pygame.mixer.Sound("Assets/World/Sounds/AttackHit.wav")
-    item_collected_sound = pygame.mixer.Sound("Assets/World/Sounds/Collected.wav")
+    pygame.mixer.music.load("Assets/World/UI/Sounds/BGMusic.wav")
+    lost_sound = pygame.mixer.Sound("Assets/World/UI/Sounds/Lost.wav")
+    attack_sound = pygame.mixer.Sound("Assets/World/UI/Sounds/Attack.wav")
+    attack_hit_sound = pygame.mixer.Sound("Assets/World/UI/Sounds/AttackHit.wav")
+    item_collected_sound = pygame.mixer.Sound("Assets/World/UI/Sounds/Collected.wav")
         
     pygame.mixer.music.set_volume(0.05)
     lost_sound.set_volume(0.3)
