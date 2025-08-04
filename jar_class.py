@@ -69,4 +69,4 @@ class Jar:
             return True
         else:
             print(f"Not enough Lucarii! Need {self.price}, have {assets.lucarii_collected}")
-            return False  # Purchase failed
+            return False
