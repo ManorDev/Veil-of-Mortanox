@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Veil of Mortanox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background-color: #111;
+      color: #eee;
+      font-family: 'Cinzel', serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/7/70/Pixel-art_background_example.png') center/cover no-repeat;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.5);
+    }
+    header h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      text-shadow: 0 0 10px #000;
+    }
+    header p {
+      font-size: 1.3rem;
+      opacity: 0.85;
+      margin-top: 0.5rem;
+      text-shadow: 0 0 5px #000;
+    }
+    main.container {
+      max-width: 900px;
+      padding: 2rem 1rem 3rem;
+      margin: auto;
+      flex-grow: 1;
+    }
+
+    h2, h3 {
+      color: #88c0d0;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+      margin: 0 0 2rem 0;
+    }
+    ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .screenshot {
+      text-align: center;
+      margin: 3rem 0;
+    }
+    .screenshot img {
+      max-width: 100%;
+      border: 3px solid #555;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .screenshot img:hover {
+      transform: scale(1.03);
+    }
+    .screenshot em {
+      display: block;
+      margin-top: 0.7rem;
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    a {
+      color: #81a1c1;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover,
+    a:focus {
+      color: #88c0d0;
+      text-decoration: underline;
+      outline: none;
+    }
+
+    footer {
+      background-color: #222;
+      text-align: center;
+      padding: 1rem 1rem;
+      font-size: 0.9rem;
+      color: #666;
+      user-select: none;
+      margin-top: auto;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Veil of Mortanox</h1>
+    <p>A cursed 2D pixel-fantasy platformer forged with Pygame</p>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>About the Game</h2>
+      <p>
+        <strong>Veil of Mortanox</strong> is a dark-fantasy 2D pixel platformer centered around Mortanox — a cursed, heroic figure in a mythic land. 
+        Collect <strong>Lucarii</strong> (coins), protect your <strong>Vitalis</strong> (health), defeat hostile bats and mini-bosses, and uncover the mystery behind the curse.
+      </p>
+      <p>
+        The game currently features basic enemy logic, sprite-based animation, combat mechanics, and collectible Lucarii. 
+        A full upgrade shop, healing system, boss battles, and more are under development.
+      </p>
+    </section>
+
+    <section>
+      <h3>Current Gameplay Elements</h3>
+      <ul>
+        <li>Mortanox character with attack, jump, and run animations</li>
+        <li>Hostile bats with visible health bars</li>
+        <li>Mini-boss spawn system (every 5 bat kills)</li>
+        <li>Lucarii and Vitalis UI, coin collection logic</li>
+        <li>Level-up and save system (JSON-based)</li>
+      </ul>
+    </section>
+
+    <section class="screenshot">
+      <h3>Screenshot</h3>
+      <img src="https://raw.githubusercontent.com/ManorDev/Veil-of-Mortanox/master/screenshot.png" alt="Gameplay screenshot" />
+      <p><em>This screenshot is a placeholder. The background, ground, and sound were sourced from the internet as temporary assets. These will be replaced with original designs in future updates.</em></p>
+    </section>
+
+    <section>
+      <h2>Credits</h2>
+      <ul>
+        <li><strong>Game Design:</strong> Manor Rahamim & Ilay Glickman</li>
+        <li><strong>Audio:</strong> FL Studio</li>
+        <li><strong>Art:</strong> Piskel, Photoshop</li>
+        <li><strong>Engine:</strong> Pygame</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Repository</h2>
+      <p>
+        View or contribute on GitHub:  
+        <a href="https://github.com/ManorDev/Veil-of-Mortanox" target="_blank" rel="noopener noreferrer">Veil of Mortanox on GitHub</a>
+      </p>
+    </section>
+
+    <section>
+      <h2>Status</h2>
+      <p>
+        This project is under active development. Expect frequent updates, improvements, and new content. Backgrounds, ground art, and sound design are currently placeholders and will be replaced with original assets.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Manor Rahamim & Ilay Glickman — All Rights Reserved
+  </footer>
+</body>
+</html>

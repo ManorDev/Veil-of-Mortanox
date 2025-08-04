@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  background-color: #111;
+  color: #eee;
+}
+
+header {
+  background: url('https://upload.wikimedia.org/wikipedia/commons/7/70/Pixel-art_background_example.png') no-repeat center center;
+  background-size: cover;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 0;
+}
+
+header p {
+  font-size: 1.2rem;
+  opacity: 0.85;
+}
+
+.container {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.screenshot {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.screenshot img {
+  width: 100%;
+  max-width: 700px;
+  border: 2px solid #555;
+  border-radius: 8px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+a {
+  color: #6cf;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
