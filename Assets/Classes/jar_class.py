@@ -1,3 +1,5 @@
+from player_class import Mortanox
+
 class Jar:
     def __init__(self, effect: int, attribute: str, price: int, defect_attribute="", defect=0,duration=-1):
         self.bonus = effect
@@ -6,55 +8,60 @@ class Jar:
         self.defect_attribute = defect_attribute
         self.price = price
         self.duration=duration
-        self.attack_cool_down
-    def apply_positive(self, player,offset=1):
-        """Apply positive effects to the player"""
-        if self.attribute.lower() == "speed":
-            # Increase movement speed
-            player.dx += offset*(self.bonus)
-        elif self.attribute.lower() == "health":
-            # Heal the player (but don't exceed max health)
-            player.vitalis += min(player.vitalis + self.bonus, player.max_vitalis)
-        elif self.attribute.lower() == "max_health":
-            # Increase maximum health and current health
-            player.max_vitalis += self.bonus
-            player.vitalis += self.bonus
-        elif self.attribute.lower() == "jump_height":
-            # Increase jump height
-            player.jump_height += offset(self.bonus)
-        elif self.attribute.lower() == "attack_speed":
-            # Decrease attack cooldown (faster attacks)
-            player.attack_cooldown = max(100, player.attack_cooldown - (self.bonus * 10))
-        elif self.attribute.lower() == "second_chance":
-            # Add a second chance mechanic (you'd need to implement this in the main game)
-            player.second_chance = True
-        elif self.attribute.lower() == "damage":
-            # Increase damage
-            player.damage += offset(self.bonus)
+        self.in_effect=False
+        self.attack_speed = 1
+        self.used_duration = 0
+    def apply_positive(self, mortanox,offset=1):
+        assert type(mortanox) == Mortanox
+        """Apply positive effects to the mortanox"""
+        if not self.in_effect:
+            if self.attribute.lower() == "speed":
+                mortanox.dx += offset*(self.bonus)
+            elif self.attribute.lower() == "health":
+                mortanox.vitalis += min(mortanox.vitalis + self.bonus, mortanox.max_vitalis)
+            elif self.attribute.lower() == "max_health":
+                mortanox.max_vitalis += self.bonus
+                mortanox.vitalis += self.bonus
+            elif self.attribute.lower() == "jump_height":
+                mortanox.jump_height += offset*(self.bonus)
+            elif self.attribute.lower() == "attack_speed":
+                if offset==1:
+                    self.attack_speed=mortanox.attack_cooldown
+                    mortanox.attack_cooldown = max(100, mortanox.attack_cooldown - (self.bonus * 10))
+                else:
+                    mortanox.attack_cooldown=self.attack_speed
+            elif self.attribute.lower() == "second_chance":
+                mortanox.second_chance = True
+            elif self.attribute.lower() == "damage":
+                mortanox.damage += offset(self.bonus)
+                self.effect=True
     
-    def apply_negative(self, player):
-        """Apply negative effects to the player"""
+    def apply_neve(self, mortanox):
+        assert type(mortanox) == Mortanox
+        """Apply negative effects to the mortanox"""
         if self.defect_attribute.lower() == "speed":
-            player.dx = max(1, player.dx - self.defect)
+            mortanox.dx = max(1, mortanox.dx - self.defect)
         elif self.defect_attribute.lower() == "health":
-            player.vitalis = max(1, player.vitalis - self.defect)
+            mortanox.vitalis = max(1, mortanox.vitalis - self.defect)
         elif self.defect_attribute.lower() == "max_health":
-            player.max_vitalis = max(1, player.max_vitalis - self.defect)
-            player.vitalis = min(player.vitalis, player.max_vitalis)
+            mortanox.max_vitalis = max(1, mortanox.max_vitalis - self.defect)
+            mortanox.vitalis = min(mortanox.vitalis, mortanox.max_vitalis)
         elif self.defect_attribute.lower() == "jump_height":
-            player.jump_height = max(5, player.jump_height - self.defect)
+            mortanox.jump_height = max(5, mortanox.jump_height - self.defect)
         elif self.defect_attribute.lower() == "attack_speed":
-            player.attack_cooldown += (self.defect * 10)
+            mortanox.attack_cooldown += (self.defect * 10)
         elif self.defect_attribute.lower() == "damage":
-            player.damage = max(1, player.damage - self.defect)
+            mortanox.damage = max(1, mortanox.damage - self.defect)
     
-    def apply(self, player):
+    def apply(self, mortanox):
+        assert type(mortanox) == Mortanox
         """Apply both positive and negative effects"""
-        self.apply_positive(player)
+        self.apply_positive(mortanox)
         if self.defect_attribute:
-            self.apply_negative(player)
+            self.apply_negative(mortanox)
     
-    def buy(self, player):
+    def buy(self, mortanox):
+        assert type(mortanox) == Mortanox
         """Purchase the jar and apply its effects"""
         from assets import lucarii_collected, save_lucarii
         import assets
@@ -62,12 +69,13 @@ class Jar:
         if assets.lucarii_collected >= self.price:
             assets.lucarii_collected -= self.price
             if self.duration==-1:
-                self.price*=1.5
-            self.apply(player)
-            save_lucarii()
-            return True
+                self.price *= 1.5
         else:
-            print(f"Not enough Lucarii! Need {self.price}, have {assets.lucarii_collected}")
             return False
-    def remove(self,player):
-        self.apply_positive(player,-1)
+    def remove(self,mortanox):
+        self.apply_positive(mortanox,-1)
+    def remove_after_duration(self,fps,mortanox):
+        self.used_duration+=1000//fps
+        if self.used_duration>=self.duration:
+            self.used_duration=0
+            self.remove(mortanox)

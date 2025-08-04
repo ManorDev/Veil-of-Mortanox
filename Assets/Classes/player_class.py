@@ -28,7 +28,7 @@ class Mortanox(pygame.sprite.Sprite):
             self.jumping_images = [self.idle_image] * 12
             self.attack_sound = None
         
-        self.damage = 1
+        self.damage = 3
         
 
         self.vitalis_removed_image = [pygame.transform.scale(pygame.image.load(f"Assets/World/UI/VitalisRemovingAnimation/vitalis{i}.png"), (70, 70)) for i in range(8)]

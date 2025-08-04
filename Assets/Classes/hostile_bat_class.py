@@ -21,7 +21,7 @@ class HostileBat(pygame.sprite.Sprite):
         self.stunned = False
         self.stun_duration = 100
         self.stun_start_time = 0
-        self.knockback_speed = 8 
+        self.knockback_speed = 12
         self.knockback_direction = -1
 
     def update(self):

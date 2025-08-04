@@ -29,7 +29,7 @@ try:
 
     hostile_bat_moving_images = [pygame.image.load(f"Assets/Enemies/HostileBat/Moving/hostilebatmoving{i}.png") for i in range(4)]
     hostile_bat_attacking_images = [pygame.image.load(f"Assets/Enemies/HostileBat/Attack/hostilebat{i}.png") for i in range(8)]
-    mini_boss_moving_images = [pygame.image.load(f"Assets/Enemies/MiniBoss/Moving/minibossmoving{i}.png") for i in range(4)]
+    """mini_boss_moving_images = [pygame.image.load(f"Assets/Enemies/MiniBoss/Moving/minibossmoving{i}.png") for i in range(4)]"""
 
     bg_image = pygame.image.load("Assets/World/UI/Images/BG.png").convert()
     vitalis_image = pygame.image.load("Assets/World/UI/Images/Vitalis.png")
