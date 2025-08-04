@@ -1,36 +1,64 @@
 # Veil of Mortanox
 
-**Veil of Mortanox** is a 2D dark fantasy platformer built with Python and Pygame. You play as Mortanox — a cursed warrior battling waves of bats, mini-bosses, and an unknown fate in a Latin-inspired world.
+**Veil of Mortanox** is a dark fantasy 2D pixel platformer built with Pygame. You play as **Mortanox**, a cursed, heroic warrior navigating a mythic world filled with hostile creatures, ancient ruins, and secrets tied to his past.
 
 ---
 
-## Features
+##  Gameplay Overview
 
--   Sword-based combat with animated attacks
--   Hostile bats and mini-boss spawn system
--   Vitalis (hp) system with damage and healing
--   Collectible Lucarii (coins) used for healing and upgrades
--   Leveling system (every 5 bat kills spawns a mini-boss)
--   Save/load using JSON (coins + level tracking)
--   Well-organized assets and animation folders
--   Custom sound effects and music
+- Collect **Lucarii** (in-game coins)
+- Defend your **Vitalis** (your health)
+- Battle hostile bats and increasingly difficult mini-bosses
+- Every 5 bat kills spawns a mini-boss
+- Level increases with each mini-boss defeated
+- Boss battle coming soon
+
+---
+    
+##  Features (in development)
+
+- Smooth character animations: attack, jump, and run
+- Health bars for enemies (Vitalis bars)
+- Coin collection, healing mechanics, and upgrades (in progress)
+- Save system using JSON files
+- Planned shop and upgrade UI
+- Placeholder background and ground graphics (custom pixel art coming)
+- Sound is currently placeholder (custom audio being composed)
 
 ---
 
-## Name Meanings & Lore
+##  Screenshot
 
-- **Mortanox**: A fusion of _"Mors"_ (Latin for "death") and _"Nox"_ (Latin for "night"). Mortanox is a cursed warrior bound to eternal darkness, fighting for redemption.
+[![Gameplay Screenshot](https://raw.githubusercontent.com/yourusername/yourrepo/main/screenshot.png)](https://raw.githubusercontent.com/ManorDev/Veil-of-Mortanox/master/screenshot.png)
 
-- **Lucarii**: Derived from _"Lucra"_ or _"Lucrum"_ (Latin for "wealth" or "profit"). These golden coins represent both material gain and a piece of Mortanox's lost soul.
-
-- **Vitalis**: From Latin meaning "life force" or "vital energy." In the game, this represents the player's health and essence — lose it all, and Mortanox fades into the shadows.
-
-- **Veil of Mortanox**: Refers to the shadowy curse that hangs over Mortanox, veiling his past, future, and identity in mystery. The game is about slowly lifting that veil.
+> This is a placeholder screenshot. The background and ground art, as well as the sound design, are temporary assets from the internet and will be replaced with original content.
 
 ---
-##  How to Run
 
-1. Install Python 3
-2. Install dependencies:
-   ```bash
-   pip install pygame
+##  Tech Stack
+
+- **Engine**: Pygame (Python)
+- **Art Tools**: Piskel, Photoshop
+- **Audio**: FL Studio
+
+---
+
+##  Credits
+
+- **Game Design & Programming**: Manor Rahamim & Ilay Glickman
+- **Pixel Art**: Created in-house using Piskel and Photoshop
+- **Sound**: Composed in FL Studio
+- **Website**: Designed using HTML & CSS
+
+---
+
+##  Repository
+
+You can view or contribute to the project here:  
+[🔗 GitHub Repository](https://github.com/ManorDev/Veil-of-Mortanox)
+
+---
+
+##  Development Status
+
+The game is currently under active development. Major gameplay systems are functional, but several elements—including the final background, ground, sound, UI, and bosses—are still in progress and will evolve with future updates.
