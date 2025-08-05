@@ -1,64 +1,53 @@
 # Veil of Mortanox
 
-**Veil of Mortanox** is a dark fantasy 2D pixel platformer built with Pygame. You play as **Mortanox**, a cursed, heroic warrior navigating a mythic world filled with hostile creatures, ancient ruins, and secrets tied to his past.
+ A dark fantasy 2D pixel platformer built with Python and Pygame.
 
 ---
 
 ##  Gameplay Overview
 
-- Collect **Lucarii** (in-game coins)
-- Defend your **Vitalis** (your health)
-- Battle hostile bats and increasingly difficult mini-bosses
-- Every 5 bat kills spawns a mini-boss
-- Level increases with each mini-boss defeated
-- Boss battle coming soon
+**Veil of Mortanox** follows the cursed hero **Mortanox** as he fights off dark creatures, collects Lucarii (coins), and defends his Vitalis (health) in a decaying world.
 
----
-    
-##  Features (in development)
+### Core Features
 
-- Smooth character animations: attack, jump, and run
-- Health bars for enemies (Vitalis bars)
-- Coin collection, healing mechanics, and upgrades (in progress)
-- Save system using JSON files
-- Planned shop and upgrade UI
-- Placeholder background and ground graphics (custom pixel art coming)
-- Sound is currently placeholder (custom audio being composed)
+-  **Play as Mortanox** – a Latin-inspired cursed hero with smooth pixel animations
+-  **Collect Lucarii** – In-game currency used for future upgrades and healing
+-  **Vitalis System** – Health points with visual feedback (5 hearts to start)
+-  **Combat** – Smooth animations for sword attacks, with simple collision-based damage logic (no enemy AI yet)
+-  **Hostile Bats** – Basic enemies that deal 1 Vitalis damage and take 3 hits to defeat
+-  **Mini-Bosses** – Currently under development. They are triggered after every 5 bat kills, and AI behavior is planned for future versions
+-  **Progression** – Each mini-boss defeat increases the level (tracked in `level.json`)
+-  **Lucarii Saving** – Coins saved between sessions using JSON files
+-  **Pixel Art & Sound** – Original FL Studio music and Piskel/Photoshop pixel art (many assets are placeholders for now)
 
 ---
 
-##  Screenshot
+##  In Development
 
-[![Gameplay Screenshot](https://raw.githubusercontent.com/ManorDev/Veil-of-Mortanox/master/screenshot.png)](https://raw.githubusercontent.com/ManorDev/Veil-of-Mortanox/master/screenshot.png)
-
-> This is a placeholder screenshot. The background and ground art, as well as the sound design, are temporary assets from the internet and will be replaced with original content.
-
----
-
-##  Tech Stack
-
-- **Engine**: Pygame (Python)
-- **Art Tools**: Piskel, Photoshop
-- **Audio**: FL Studio
+-  **Enemy AI** – To be added, starting with the mini-boss
+-  **Upgrade Shop**
+-  **Final Backgrounds & Tiles**
+-  **More Sound Effects & Music**
+-  **"How to Play" Tutorial Screen**
+-  **Boss Battle Logic**
 
 ---
+
+##  How to Run
+
+1. Make sure you have Python 3.x and Pygame installed:
+In cmd, type: "pip install pygame"
+
+2. Run the menu.py file
 
 ##  Credits
 
-- **Game Design & Programming**: Manor Rahamim & Ilay Glickman
-- **Pixel Art**: Created in-house using Piskel and Photoshop
-- **Sound**: Composed in FL Studio
-- **Website**: Designed using HTML & CSS
+- **Game Design**: Manor Rahamim & Ilay Glickman
+- **Art**: Piskel & Photoshop
+- **Sound**: FL Studio
 
 ---
 
-##  Repository
+##  Future Plans
 
-You can view or contribute to the project here:  
-[🔗 GitHub Repository](https://github.com/ManorDev/Veil-of-Mortanox)
-
----
-
-##  Development Status
-
-The game is currently under active development. Major gameplay systems are functional, but several elements—including the final background, ground, sound, UI, and bosses—are still in progress and will evolve with future updates.
+A prequel game is planned.

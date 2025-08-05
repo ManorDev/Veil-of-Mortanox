@@ -2,19 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Veil of Mortanox</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet" />
-  
+
   <style>
-    /* Universal and Base Styles */
+    /* Reset and base */
     *, *::before, *::after {
       box-sizing: border-box;
     }
-
     body {
       margin: 0;
       background-color: #111;
@@ -24,76 +23,63 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
     }
-
-    /* Typography and Links */
     h1, h2, h3 {
       font-weight: 600;
-      text-shadow: 0 0 5px rgba(0,0,0,0.5);
+      text-shadow: 0 0 5px rgba(0,0,0,0.6);
     }
-
     h2, h3 {
       color: #88c0d0;
       margin-top: 2rem;
       margin-bottom: 1rem;
     }
-
     a {
       color: #81a1c1;
       text-decoration: none;
       transition: color 0.3s ease;
     }
-
     a:hover,
     a:focus {
       color: #88c0d0;
       text-decoration: underline;
       outline: none;
     }
-
     ul {
-      padding-left: 1.2rem;
+      padding-left: 1.3rem;
       margin: 0 0 2rem 0;
     }
-
     ul li {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
     }
-
-    /* Header */
     header {
       background: url('https://upload.wikimedia.org/wikipedia/commons/7/70/Pixel-art_background_example.png') center/cover no-repeat;
       text-align: center;
-      padding: 6rem 2rem 4rem;
-      box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.5);
+      padding: 5rem 2rem 3rem;
+      box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.6);
     }
-
     header h1 {
       font-size: clamp(2rem, 8vw, 3.5rem);
       margin: 0;
-      text-shadow: 0 0 10px #000;
+      text-shadow: 0 0 12px #000;
     }
-
     header p {
       font-size: clamp(1rem, 3vw, 1.3rem);
       opacity: 0.85;
-      margin-top: 0.5rem;
+      margin-top: 0.7rem;
       text-shadow: 0 0 5px #000;
+      font-style: italic;
     }
-
-    /* Main Container and Sections */
     main.container {
       max-width: 900px;
       padding: 2rem 1rem 3rem;
       margin: auto;
       flex-grow: 1;
     }
-
     .screenshot {
       text-align: center;
       margin: 3rem 0;
     }
-
     .screenshot img {
       max-width: 100%;
       height: auto;
@@ -103,11 +89,9 @@
       transition: transform 0.3s ease;
       cursor: pointer;
     }
-
     .screenshot img:hover {
-      transform: scale(1.03);
+      transform: scale(1.04);
     }
-
     .screenshot figcaption {
       display: block;
       margin-top: 0.7rem;
@@ -115,8 +99,6 @@
       font-size: 0.9rem;
       font-style: italic;
     }
-    
-    /* Footer */
     footer {
       background-color: #222;
       text-align: center;
@@ -131,49 +113,60 @@
 <body>
   <header>
     <h1>Veil of Mortanox</h1>
-    <p>A cursed 2D pixel-fantasy platformer forged with Pygame</p>
+    <p>A dark fantasy 2D pixel platformer built with Python and Pygame</p>
   </header>
 
   <main class="container">
-    <section class="about">
-      <h2>About the Game</h2>
-      <p>
-        <strong>Veil of Mortanox</strong> is a dark-fantasy 2D pixel platformer centered around Mortanox — a cursed, heroic figure in a mythic land.
-        Collect <strong>Lucarii</strong> (coins), protect your <strong>Vitalis</strong> (health), defeat hostile bats and mini-bosses, and uncover the mystery behind the curse.
-      </p>
-      <p>
-        The game currently features basic enemy logic, sprite-based animation, combat mechanics, and collectible Lucarii.
-        A full upgrade shop, healing system, boss battles, and more are under development.
-      </p>
-    </section>
-
-    <section class="features">
-      <h3>Current Gameplay Elements</h3>
+    <section class="overview">
+      <h2>Gameplay Overview</h2>
+      <p><strong>Veil of Mortanox</strong> follows the cursed hero <strong>Mortanox</strong> as he fights dark creatures, collects <strong>Lucarii</strong> (coins), and defends his <strong>Vitalis</strong> (health) in a decaying world.</p>
+      <h3>Core Features</h3>
       <ul>
-        <li>Mortanox character with attack, jump, and run animations</li>
-        <li>Hostile bats with visible health bars</li>
-        <li>Mini-boss spawn system (every 5 bat kills)</li>
-        <li>Lucarii and Vitalis UI, coin collection logic</li>
-        <li>Level-up and save system (JSON-based)</li>
+        <li><strong>Play as Mortanox</strong> – a Latin-inspired cursed hero with smooth pixel animations</li>
+        <li><strong>Collect Lucarii</strong> – In-game currency for upgrades and healing</li>
+        <li><strong>Vitalis System</strong> – Health points with visual feedback (5 hearts to start)</li>
+        <li><strong>Combat</strong> – Sword attack animations with collision damage (no enemy AI yet)</li>
+        <li><strong>Hostile Bats</strong> – Basic enemies dealing 1 Vitalis damage, taking 3 hits to defeat</li>
+        <li><strong>Mini-Bosses</strong> – Under development; spawn every 5 bat kills with planned AI</li>
+        <li><strong>Progression</strong> – Level increases after each mini-boss defeat (tracked in <code>level.json</code>)</li>
+        <li><strong>Lucarii Saving</strong> – Coin saving between sessions using JSON files</li>
+        <li><strong>Pixel Art & Sound</strong> – Original FL Studio music and Piskel/Photoshop pixel art (placeholders currently)</li>
       </ul>
     </section>
 
-    <section class="screenshot">
-      <h3>Screenshot</h3>
-      <figure>
-        <img src="screenshot.png" alt="Gameplay screenshot from Veil of Mortanox" />
-        <figcaption>This screenshot is a placeholder. The background, ground, and sound were sourced from the internet as temporary assets. These will be replaced with original designs in future updates.</figcaption>
-      </figure>
+    <section class="in-development">
+      <h2>In Development</h2>
+      <ul>
+        <li>Enemy AI (starting with mini-boss)</li>
+        <li>Upgrade Shop</li>
+        <li>Final Backgrounds & Tiles</li>
+        <li>More Sound Effects & Music</li>
+        <li>"How to Play" Tutorial Screen</li>
+        <li>Boss Battle Logic</li>
+      </ul>
+    </section>
+
+    <section class="how-to-run">
+      <h2>How to Run</h2>
+      <ol>
+        <li>Ensure Python 3.x and Pygame are installed:<br /><code>pip install pygame</code></li>
+        <li>Run the <code>menu.py</code> file to start the game</li>
+      </ol>
     </section>
 
     <section class="credits">
       <h2>Credits</h2>
       <ul>
         <li><strong>Game Design:</strong> Manor Rahamim & Ilay Glickman</li>
-        <li><strong>Audio:</strong> FL Studio</li>
-        <li><strong>Art:</strong> Piskel, Photoshop</li>
+        <li><strong>Art:</strong> Piskel & Photoshop</li>
+        <li><strong>Sound:</strong> FL Studio</li>
         <li><strong>Engine:</strong> Pygame</li>
       </ul>
+    </section>
+
+    <section class="future-plans">
+      <h2>Future Plans</h2>
+      <p>A prequel game is planned.</p>
     </section>
 
     <section class="repository">
@@ -184,11 +177,12 @@
       </p>
     </section>
 
-    <section class="status">
-      <h2>Status</h2>
-      <p>
-        This project is under active development. Expect frequent updates, improvements, and new content. Backgrounds, ground art, and sound design are currently placeholders and will be replaced with original assets.
-      </p>
+    <section class="screenshot">
+      <h2>Screenshot</h2>
+      <figure>
+        <img src="screenshot.png" alt="Gameplay screenshot from Veil of Mortanox" />
+        <figcaption>This screenshot is a placeholder. Background, ground, and sounds are temporary assets to be replaced with original designs.</figcaption>
+      </figure>
     </section>
   </main>
 
