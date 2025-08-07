@@ -7,7 +7,7 @@ from assets import lucarii_collected, lucarii_path, save_lucarii
 from Assets.Classes.button_class import Button
 
 pygame.init()
-pygame.mixer.init()
+pygame.mixer.init()  
 
 
 screen_width, screen_height = 1000, 800
@@ -25,7 +25,7 @@ BLACK = (0, 0, 0)
 BUTTON_COLOR = (100, 100, 100)
 HOVER_COLOR = (150, 150, 150)
 
-lucarius_image = pygame.image.load("Assets/World/Images/Lucarius.png")
+lucarius_image = pygame.image.load("Assets/World/UI/Images/Lucarius.png")
 lucarius_image = pygame.transform.scale(lucarius_image, (100, 100))
 
 title_text_surface = title_font.render("Menu", True, BLACK)

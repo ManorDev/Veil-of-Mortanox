@@ -212,9 +212,9 @@ def main_game_loop():
                     if event.key == pygame.K_x:
                         attack_sound.play()
                         mortanox.attack()
-                    if event.key == pygame.K_RIGHT:
+                    if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                         mortanox.run(1)
-                    if event.key == pygame.K_LEFT:
+                    if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                         mortanox.run(-1)
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
